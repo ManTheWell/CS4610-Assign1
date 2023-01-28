@@ -90,8 +90,8 @@ function App() {
         />
         <button onClick={getQuotes} className='button'>Search</button>
       </div>
-      {/* add the quotes from the list to the page */}
-      <div>
+      {/* add the quotes from the list to the page. does not need to be centered, just have top after search */}
+      <div className={searched ? "top-div" : ""}>
         {
           quotes.map((quo) => (
           <div key={quo.id} className='quote'>
