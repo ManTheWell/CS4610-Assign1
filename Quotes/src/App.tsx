@@ -1,5 +1,5 @@
 import { useState, useEffect, KeyboardEvent } from 'react';
-// import { recordAnalytic } from './lib/recordAnalytic';
+import './App.css';
 let ID_COUNT = 0;
 
 interface Todo {
@@ -16,9 +16,8 @@ interface QuoteInfo {
 
 function App() {
   const [quotes, setQuotes] = useState<QuoteInfo[]>([]);
-  const [description, setDescription] = useState("");
-  const [randomQFetch, setRandomQFetch] = useState(false);
-  const [quotesFetched, setQuotesFetched] = useState(false);
+  const [author, setAuthor] = useState("");
+  var [searched, setSearch] = useState(false);
 
   useEffect(() => {
     getRandom();
@@ -28,21 +27,21 @@ function App() {
     const fetchRequest = await fetch("https://api.quotable.io/random");
     const fetchJson = await fetchRequest.json();
     
-
     var quote: QuoteInfo = {
       id: ID_COUNT++,
       content: fetchJson.content,
       author: fetchJson.author,
     };
-    console.log(quote);
     setQuotes([...quotes]);
     quotes[0] = quote;
   }
 
   async function getQuotes() {
-    if (description === "") return;
+    if (author === "") return;
 
-    const fetchRequest = await fetch("https://api.quotable.io/search/quotes?query=" + "albert" + "&fields=author");
+    setSearch(true);
+    var url = "https://api.quotable.io/search/quotes?query=" + author + "&fields=author";
+    const fetchRequest = await fetch(url);
     const fetchJson = await fetchRequest.json();
     const resultList = fetchJson.results;
 
@@ -53,21 +52,19 @@ function App() {
         content: resultList[a].content,
         author: resultList[a].author,
       };
-      console.log(quote);
       setQuotes([...quotes]);
       quotes[a] = quote;
     }
-    console.log("quotes list: " + quotes);
   }
 
   return (
-    <div>
-      <div>
+    <div className={searched ? "top-div" : "centered-div"}>
+      <div >
         <input
           type="text"
-          value={description}
+          value={author}
           placeholder="The thing you need to do"
-          onChange={e => setDescription(e.target.value)}
+          onChange={e => setAuthor(e.target.value)}
         />
         <button onClick={getQuotes}>Save</button>
       </div>
