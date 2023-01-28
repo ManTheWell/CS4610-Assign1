@@ -1,20 +1,87 @@
 
+/* centers divs in middle of page */
 .centered-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   height: 100vh;
-
+  gap: 5px;
 }
 
+/* same as centered just at the top of the page */
 .top-div {
-  margin: 0;
   display: flex;
   flex-direction: column;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
+  gap: 5px;
 }
 
+/* set the color of the text in the search bar */
+::placeholder {
+  color: rgb(118, 151, 118);
+  opacity: 1;
+}
 
+/* mess with the search bar a little */
+.button {
+  min-height: 33.5px;
+  min-inline-size: 20%;
 
+  border-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  border-width: 1.5px;
+  border-style: solid;
+  background-color: rgb(1, 52, 1);
+}
+
+/* set the color, size, and text indent of the search bar */
+.input-line {
+  min-height: 33.5px;
+  min-inline-size: 65%;
+
+  text-indent: 14px;
+
+  border-color: rgb(244, 255, 244);
+  border-radius: 20px;
+  border-style: solid;
+  background-color: green;
+}
+
+/* make the title pretty */
+.title {
+  padding: 12px;
+
+  background-color: rgb(10, 255, 51);
+  color: rgb(8, 54, 0);
+
+  font: italic;
+  font-size: 25px;
+  text-align: center;
+
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  border-radius: 20px;
+}
+
+/* make a pretty box for each quote */
+.quote {
+  background-color: rgb(0, 192, 112);
+
+  padding: 12px;
+  color: rgb(244, 255, 244);
+  font: italic;
+
+  border-style: solid;
+  border-color: rgb(244, 255, 244);
+  border-radius: 20px;
+}
+
+/* the content of a quote should be on the left */
+.content {
+  text-align: left;
+}
+
+/* the author should be on the right */
+.author {
+  text-align: right;
+}
